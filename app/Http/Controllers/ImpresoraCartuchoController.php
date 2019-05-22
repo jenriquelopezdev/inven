@@ -91,8 +91,20 @@ class ImpresoraCartuchoController extends Controller
      * @param  \App\ImpresoraCartucho  $impresoraCartucho
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ImpresoraCartucho $impresoraCartucho)
+    public function destroy(Request $request)
     {
-        //
+      $relacion=ImpresoraCartucho::find($request->input('id'));
+      try{
+        DB::transaction(function() use($relacion){
+          $relacion->delete();
+        });
+        return response()->json([
+          "ok"=>1
+        ]);
+      }catch(\Exception $e){
+        return response()->json([
+          "error"=>$e
+        ]);
+      }
     }
 }

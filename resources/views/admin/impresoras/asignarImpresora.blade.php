@@ -13,7 +13,12 @@
               <div class="form-group">
 
                 <label for="">Modelo</label>
-                <input list="modelosImpresoras" class="form-control" name="id_impresora" autocomplete="off" required id="id_impresora">
+
+                @isset($impresora[0]->id_impresora)
+                  <input list="modelosImpresoras" class="form-control" name="id_impresora" autocomplete="off" required id="id_impresora" value="{{$impresora[0]->modelo}}" readonly>
+                @else
+                  <input list="modelosImpresoras" class="form-control" name="id_impresora" autocomplete="off" required id="id_impresora">
+                @endisset
 
                 <datalist id="modelosImpresoras">
                   @forelse ($listadoImpresoras as $impresora)
@@ -54,11 +59,15 @@
 
     //Mostrar el valor del datalist en el input
     var impresoraMostrada = document.getElementById("id_impresora").value;
-    var impresoraId = document.querySelector("#modelosImpresoras option[value='"+impresoraMostrada+"']").dataset.value;
+    @isset($impresora[0]->id_impresora)
+      var impresoraId = {{$impresora[0]->id_impresora}}
+    @else
+      var impresoraId = document.querySelector("#modelosImpresoras option[value='"+impresoraMostrada+"']").dataset.value;
+    @endisset
 
     var ubicacionMostrada = document.getElementById("id_ubicacion").value;
     var ubicacionId = document.querySelector("#ubicaciones option[value='"+ubicacionMostrada+"']").dataset.value;
-    
+
     $.ajax({
       type:"POST",
       url: "{{route('impresoras.store')}}",

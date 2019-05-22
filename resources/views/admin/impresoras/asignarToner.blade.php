@@ -13,7 +13,11 @@
               <div class="form-group">
 
                 <label for="">Impresora</label>
-                <input list="modelosImpresoras" class="form-control" name="id_impresora" autocomplete="off" required id="id_impresoraT">
+                @isset($impresora[0]->id_impresora)
+                  <input list="modelosImpresoras" class="form-control" name="id_impresora" autocomplete="off" required id="id_impresoraT" value="{{$impresora[0]->modelo}}" readonly>
+                @else
+                  <input list="modelosImpresoras" class="form-control" name="id_impresora" autocomplete="off" required id="id_impresoraT">
+                @endisset
 
                 <datalist id="modelosImpresorasT">
                   @forelse ($listadoImpresoras as $impresora)
@@ -52,8 +56,11 @@
 
     //Mostrar el valor del datalist en el input
     var impresoraMostrada = document.getElementById("id_impresoraT").value;
-    var impresoraId = document.querySelector("#modelosImpresorasT option[value='"+impresoraMostrada+"']").dataset.value;
-
+    @isset($impresora[0]->id_impresora)
+      var impresoraId = {{$impresora[0]->id_impresora}}
+    @else
+    var impresoraId = document.querySelector("#modelosImpresoras option[value='"+impresoraMostrada+"']").dataset.value;
+    @endisset
     var cartuchoMostrado = document.getElementById("id_cartuchoT").value;
     var cartuchoId = document.querySelector("#cartuchos option[value='"+cartuchoMostrado+"']").dataset.value;
 
