@@ -53,7 +53,7 @@
                 <td>{{$cartucho->cartucho->modelo}}</td>
                 <td>{{$cartucho->cartucho->cantidad}}</td>
                 <td><button class="btn btn-warning btn-sm"><i class="fa fa-plus"></i>/<i class="fa fa-minus"></i></button></td>
-                <td><button class="btn btn-danger" onclick="eliminarRelacionToner({{$cartucho->cartucho->id_cartucho}})">Eliminar <i class="fa fa-trash"></i></button></td>
+                <td><button class="btn btn-danger" onclick="eliminarRelacionToner({{$cartucho->id}})">Eliminar <i class="fa fa-trash"></i></button></td>
               </tr>
             @empty
               <tr><td colspan="3"><div class="alert alert-info">Sin asignar</div></td></tr>

@@ -26,9 +26,17 @@
             <td>
               @isset($impresora->impresoraCartucho)
                 @forelse ($impresora->impresoraCartucho as $cartucho)
-                  <span class="badge badge-dark">{{$cartucho->cartucho->modelo}}</span>
+                  <span class="badge @if ($cartucho->cartucho->cantidad >=5)
+                    badge-success
+                  @elseif ($cartucho->cartucho->cantidad >=1)
+                    badge-warning
+                    @else
+                      badge-danger
+                  @endif">
+                    {{$cartucho->cartucho->modelo}}
+                  </span>
                 @empty
-                  <span class="badge badge-danger">Sin asignar</span>
+                  <span class="badge badge-secondary">Sin asignar</span>
                 @endforelse
               @endisset
 
