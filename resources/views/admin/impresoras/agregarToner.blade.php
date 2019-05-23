@@ -74,7 +74,7 @@
           }else{
             swal({
               title: "Error",
-              text: "Ocurrió un error:, "+valor.error,
+              text: "Ocurrió un error:, "+valor,
               icon: "error",
               button: "OK",
             });

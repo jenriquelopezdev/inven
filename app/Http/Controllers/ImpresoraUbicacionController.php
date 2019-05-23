@@ -57,7 +57,7 @@ class ImpresoraUbicacionController extends Controller
           });
           return response()->json(["ok"=>1]);
         }catch(\Exception $e){
-          return response()->json(["error"=>$e]);
+          return response()->json(["error"=>$e->getMessage()]);
         }
 
     }
@@ -114,7 +114,7 @@ class ImpresoraUbicacionController extends Controller
           ]);
         }catch(\Exception $e){
           return response()->json([
-            "error"=>$e
+            "error"=>$e->getMessage()
           ]);
         }
     }

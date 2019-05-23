@@ -6,7 +6,7 @@
   {{-- Barra de navegación --}}
   @include('admin.navegacion')
   <div class="container mb-3">
-    <h3 class="display-5">Información de la impresora {{$impresora[0]->modelo}}</h3>
+    <h3 class="display-5">Información de la impresora {{$impresora[0]->modelo}} <button data-toggle="modal" data-target="#modalEditarImpresora" class="btn btn-warning"><i class="fa fa-edit"></i></button></h3>
     <div class="list-group" id="myList" role="tablist">
       <a class="list-group-item list-group-item-action active" data-toggle="list" href="#ubicacionesImp" role="tab">Ubicaciones</a>
       <a class="list-group-item list-group-item-action" data-toggle="list" href="#cartuchosImp" role="tab">Cartuchos</a>
@@ -65,6 +65,8 @@
   </div>
   @include('admin.impresoras.asignarImpresora')
   @include('admin.impresoras.asignarToner')
+  @include('admin.impresoras.editarImpresora')
+
 <script>
 //Eliminar la impresora de la ubicación (por id)
   function eliminarRelacionUbicacion(id){
@@ -95,11 +97,13 @@
                 }else{
                   swal({
                     title: "Error",
-                    text: "Ocurrió un error:, "+valor.error,
+                    text: "Ocurrió un error:, "+valor,
                     icon: "error",
                     button: "OK",
                   });
-                console.warn(valor)
+                  console.warn(resp)
+                  console.warn(llave)
+                  console.warn(valor)
                 }
               })
             },
@@ -142,7 +146,7 @@
                   }else{
                     swal({
                       title: "Error",
-                      text: "Ocurrió un error:, "+valor.error,
+                      text: "Ocurrió un error:, "+valor,
                       icon: "error",
                       button: "OK",
                     });

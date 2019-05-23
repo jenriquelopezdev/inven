@@ -92,7 +92,16 @@ class ImpresoraController extends Controller
      */
     public function update(Request $request, Impresora $impresora)
     {
-        //
+      try{
+        DB::transaction(function() use($request,$impresora){
+          $impresora->modelo=$request->input('modelo');
+          $impresora->save();
+        });
+        return response()->json(["ok"=>1]);
+      }catch(\Exception $e){
+        return response()->json(["error"=>$e->getMessage()]);
+      }
+
     }
 
     /**
