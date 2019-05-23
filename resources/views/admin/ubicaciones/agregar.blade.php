@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-          <form method="post" id="agregarUbicacion">
+          <form method="post" id="adminAgregarUbicacion">
             @csrf
               <div class="form-group">
                 <label for="">Planta</label>
@@ -32,12 +32,12 @@
 
 
 <script>
-  $("#agregarUbicacion").submit(function(){
+  $("#adminAgregarUbicacion").submit(function(){
     event.preventDefault();
     $.ajax({
       type:"POST",
       url: "{{route('ubicaciones.store')}}",
-      data:$("#agregarUbicacion").serialize(),
+      data:$("#adminAgregarUbicacion").serialize(),
       success:function(resp){
         $.each(resp, function(llave,valor){
           if(valor==1){
@@ -53,7 +53,7 @@
           }else{
             swal({
               title: "Error",
-              text: "Ocurrió un error:, "+valor.errorInfo,
+              text: "Ocurrió un error:, "+valor,
               icon: "error",
               button: "OK",
             });

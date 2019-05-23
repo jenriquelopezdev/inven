@@ -51,7 +51,7 @@
 
     </div>
   </div>
-@include('admin.ubicaciones.agregar')
+{{-- @include('admin.ubicaciones.agregar') --}}
 
 <script>
   $("#asignarImpresora").submit(function(){
