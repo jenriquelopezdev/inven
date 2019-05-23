@@ -52,7 +52,7 @@
                 <td>{{$cartucho->cartucho->id_cartucho}}</td>
                 <td>{{$cartucho->cartucho->modelo}}</td>
                 <td>{{$cartucho->cartucho->cantidad}}</td>
-                <td><button class="btn btn-warning btn-sm"><i class="fa fa-plus"></i>/<i class="fa fa-minus"></i></button></td>
+                <td><button class="btn btn-warning btn-sm activarModalToner"  data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}"  data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}"  ><i class="fa fa-plus"></i>/<i class="fa fa-minus"></i></button></td>
                 <td><button class="btn btn-danger" onclick="eliminarRelacionToner({{$cartucho->id}})">Eliminar <i class="fa fa-trash"></i></button></td>
               </tr>
             @empty
@@ -66,7 +66,22 @@
   @include('admin.impresoras.asignarImpresora')
   @include('admin.impresoras.asignarToner')
   @include('admin.impresoras.editarImpresora')
+  @include('admin.impresoras.adminToner')
 
+  <script>
+    $('.activarModalToner').on('click',function(){
+
+      $('#tituloToner').empty();
+      $('#modalAdministrarToner').modal({backdrop: 'static'})
+      var id = $(this).data('id');
+      var modelo = $(this).data('modelo');
+      var cantidad = $(this).data('cantidad');
+
+      $('#tituloToner').html('Administrar toner '+modelo);
+      $('#adminIdCartucho').val(id);
+      $('#adminCantidadToner').val(cantidad)
+    });
+  </script>
 <script>
 //Eliminar la impresora de la ubicación (por id)
   function eliminarRelacionUbicacion(id){

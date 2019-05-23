@@ -36,7 +36,7 @@
                   <td>{{$toner->id_cartucho}}</td>
                   <td>{{$toner->modelo}}</td>
                   <td>{{$toner->cantidad}}</td>
-                  <td><button class="btn btn-warning"><i class="fa fa-plus-circle"></i>/<i class="fa fa-minus-circle"></i></button></td>
+                  <td><button data-toggle="modal" data-id="{{$toner->id_cartucho}}"  data-modelo="{{$toner->modelo}}" data-cantidad="{{$toner->cantidad}}"  class="btn btn-warning activarModalToner"><i class="fa fa-plus-circle"></i>/<i class="fa fa-minus-circle"></i></button></td>
                 </tr>
               @empty
                 <tr><td colspan="3"><div class="alert alert-info">No hay cartuchos registrados</div></td></tr>
@@ -51,7 +51,21 @@
   </div>
 </div>
 
+@include('admin.impresoras.adminToner')
+<script>
+  $('.activarModalToner').on('click',function(){
 
+    $('#tituloToner').empty();
+    $('#modalAdministrarToner').modal({backdrop: 'static'})
+    var id = $(this).data('id');
+    var modelo = $(this).data('modelo');
+    var cantidad = $(this).data('cantidad');
+
+    $('#tituloToner').html('Administrar toner '+modelo);
+    $('#adminIdCartucho').val(id);
+    $('#adminCantidadToner').val(cantidad)
+  });
+</script>
 <script>
   $("#agregarToner").submit(function(){
     event.preventDefault();
@@ -87,6 +101,18 @@
       }
     })
   })
+</script>
+<script>
+  function adminToner(id,cantidadActual){
+    swal({
+          title: 'Administrar toner '+id,
+          text: 'Modificar cantidad',
+          content: {
+            element: 'input',
+            value:cantidadActual
+          }
+        })
+  }
 </script>
 <script>
 $(document).ready(function(){

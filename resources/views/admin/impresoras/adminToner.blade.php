@@ -1,28 +1,26 @@
 <div class="modal fade" id="modalAdministrarToner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Administrar toner</h5>
+      <div class="modal-header bg-secondary">
+        <h5 class="modal-title" id="tituloToner">Administrar toner</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="adminTonerCantidad">
           <div>
             <form method="post" id="adminToner">
               @csrf
-              <div class="form-inline">
-                <label for="">Modelo</label>
-                <input type="text" class="ml-3 form-control" name="modelo">
-                <button class="btn btn-success"><i class="fa fa-plus-circle"></i></button>
+              <input type="hidden" name="id_cartucho" id="adminIdCartucho" value="">
+              <div class="form-group">
+                <label for="">Cantidad</label>
+                <input type="number" id="adminCantidadToner" min="0" class="ml-3 form-control" name="cantidad" required>
               </div>
+              <button class="btn btn-secondary btn-block">Actualizar <i class="fa fa-save"></i></button>
             </form>
           </div>
-
           <hr>
-
       </div>
-
     </div>
   </div>
 </div>
@@ -32,15 +30,15 @@
   $("#adminToner").submit(function(){
     event.preventDefault();
     $.ajax({
-      type:"POST",
-      url: "{{route('cartucho.store')}}",
+      type:"PUT",
+      url: "{{route('cartucho.update',0)}}",
       data:$("#adminToner").serialize(),
       success:function(resp){
         $.each(resp, function(llave,valor){
           if(valor==1){
             swal({
                   title: "Correcto",
-                  text: "Se agregó la impresora",
+                  text: "Se actualizó la cantidad",
                   icon: "success",
                   button: "OK",
                 });

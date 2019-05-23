@@ -77,9 +77,19 @@ class CartuchoController extends Controller
      * @param  \App\Cartucho  $cartucho
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cartucho $cartucho)
+    public function update(Request $request)
     {
-        //
+      try{
+        DB::transaction(function() use($request){
+          $cartucho=Cartucho::find($request->input('id_cartucho'));
+          $cartucho->cantidad=$request->input('cantidad');
+          $cartucho->save();
+        });
+        return response()->json(["ok"=>1]);
+      }catch(\Exception $e){
+        return response()->json(["error"=>$e->getMessage()]);
+      }
+
     }
 
     /**
