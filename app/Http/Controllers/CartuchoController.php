@@ -40,6 +40,7 @@ class CartuchoController extends Controller
           $cartucho=new Cartucho();
           $cartucho->modelo=$request->input('modelo');
           $cartucho->cantidad=$request->input('cantidad');
+          $cartucho->cantidadSugerida=$request->input('cantidadSugerida');
           $cartucho->save();
         });
         return response()->json(['ok'=>1]);
@@ -83,6 +84,7 @@ class CartuchoController extends Controller
         DB::transaction(function() use($request){
           $cartucho=Cartucho::find($request->input('id_cartucho'));
           $cartucho->cantidad=$request->input('cantidad');
+          $cartucho->cantidadSugerida=$request->input('cantidadSugerida');
           $cartucho->save();
         });
         return response()->json(["ok"=>1]);

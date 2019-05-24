@@ -12,11 +12,15 @@
             <form method="post" id="agregarToner">
               @csrf
               <div class="form-inline">
-                <label for="">Modelo</label>
-                <input type="text" class="ml-3 form-control mr-3" name="modelo">
-                <label for="">Cantidad</label>
-                <input type="number" min="0" class="ml-3 form-control" name="cantidad" value="1">
+                <label for="">Modelo*</label>
+                <input type="text" class="ml-3 form-control mr-3" name="modelo" placeholder="Nombre del cartucho" required>
+                <label for="">Cantidad*</label>
+                <input type="number" min="0" class="ml-3 form-control" name="cantidad" value="1" required>
                 <button class="btn btn-success"><i class="fa fa-plus-circle"></i></button>
+              </div>
+              <div class="form-inline mt-1">
+                <label for="">Sugeridos</label>
+                <input type="number" name="cantidadSugerida" min="0" class="form-control ml-1" value="" placeholder="Cantidad sugerida">
               </div>
             </form>
           </div>
@@ -27,6 +31,7 @@
             <th>ID</th>
             <th>Modelo</th>
             <th>Cantidad</th>
+            <th>Sugeridos</th>
             <th></th>
           </thead>
           <tbody>
@@ -36,7 +41,8 @@
                   <td>{{$toner->id_cartucho}}</td>
                   <td>{{$toner->modelo}}</td>
                   <td>{{$toner->cantidad}}</td>
-                  <td><button data-toggle="modal" data-id="{{$toner->id_cartucho}}"  data-modelo="{{$toner->modelo}}" data-cantidad="{{$toner->cantidad}}"  class="btn btn-warning activarModalToner"><i class="fa fa-plus-circle"></i>/<i class="fa fa-minus-circle"></i></button></td>
+                  <td>{{$toner->cantidadSugerida}}</td>
+                  <td><button data-toggle="modal" data-id="{{$toner->id_cartucho}}" data-modelo="{{$toner->modelo}}" data-cantidad="{{$toner->cantidad}}" data-sugerido="{{$toner->cantidadSugerida}}" class="btn btn-warning activarModalToner"><i class="fa fa-plus-circle"></i>/<i class="fa fa-minus-circle"></i></button></td>
                 </tr>
               @empty
                 <tr><td colspan="3"><div class="alert alert-info">No hay cartuchos registrados</div></td></tr>
@@ -60,10 +66,11 @@
     var id = $(this).data('id');
     var modelo = $(this).data('modelo');
     var cantidad = $(this).data('cantidad');
-
+    var sugerido = $(this).data('sugerido');
     $('#tituloToner').html('Administrar toner '+modelo);
     $('#adminIdCartucho').val(id);
     $('#adminCantidadToner').val(cantidad)
+    $('#adminCantidadSugeridaToner').val(sugerido)
   });
 </script>
 <script>

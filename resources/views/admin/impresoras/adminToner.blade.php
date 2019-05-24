@@ -16,6 +16,11 @@
                 <label for="">Cantidad</label>
                 <input type="number" id="adminCantidadToner" min="0" class="ml-3 form-control" name="cantidad" required>
               </div>
+              <hr>
+              <div class="form-group">
+                <label for="">Cantidad sugerida <i class="fa fa-info-circle"></i></label>
+                <input type="number" id="adminCantidadSugeridaToner" min="0" class="ml-3 form-control" name="cantidadSugerida">
+              </div>
               <button class="btn btn-secondary btn-block">Actualizar <i class="fa fa-save"></i></button>
             </form>
           </div>

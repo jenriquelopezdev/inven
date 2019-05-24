@@ -43,6 +43,7 @@
             <th>ID cartucho</th>
             <th>Modelo</th>
             <th>Cantidad</th>
+            <th>Sugeridos</th>
             <th></th>
             <th></th>
           </thead>
@@ -52,7 +53,8 @@
                 <td>{{$cartucho->cartucho->id_cartucho}}</td>
                 <td>{{$cartucho->cartucho->modelo}}</td>
                 <td>{{$cartucho->cartucho->cantidad}}</td>
-                <td><button class="btn btn-warning btn-sm activarModalToner"  data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}"  data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}"  ><i class="fa fa-plus"></i>/<i class="fa fa-minus"></i></button></td>
+                <td>{{$cartucho->cartucho->cantidadSugerida}}</td>
+                <td><button class="btn btn-warning btn-sm activarModalToner"  data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}"  data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}" data-sugerido="{{$cartucho->cartucho->cantidadSugerida}}" ><i class="fa fa-plus"></i>/<i class="fa fa-minus"></i></button></td>
                 <td><button class="btn btn-danger" onclick="eliminarRelacionToner({{$cartucho->id}})">Eliminar <i class="fa fa-trash"></i></button></td>
               </tr>
             @empty
@@ -76,10 +78,11 @@
       var id = $(this).data('id');
       var modelo = $(this).data('modelo');
       var cantidad = $(this).data('cantidad');
-
+      var sugerido = $(this).data('sugerido');
       $('#tituloToner').html('Administrar toner '+modelo);
       $('#adminIdCartucho').val(id);
       $('#adminCantidadToner').val(cantidad)
+      $('#adminCantidadSugeridaToner').val(sugerido)
     });
   </script>
 <script>

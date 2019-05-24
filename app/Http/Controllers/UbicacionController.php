@@ -14,7 +14,7 @@ class UbicacionController extends Controller
      */
     public function index()
     {
-        //
+        return $ubicaciones=Ubicacion::all();
     }
 
     /**

@@ -26,13 +26,19 @@
             <td>
               @isset($impresora->impresoraCartucho)
                 @forelse ($impresora->impresoraCartucho as $cartucho)
-                  <span class="badge @if ($cartucho->cartucho->cantidad >=5)
-                    badge-success
-                  @elseif ($cartucho->cartucho->cantidad >=1)
-                    badge-warning
+                  <span class="badge
+                  @isset($cartucho->cartucho->cantidadSugerida)
+                    @if ($cartucho->cartucho->cantidad >= $cartucho->cartucho->cantidadSugerida)
+                      badge-success
+                    @elseif ($cartucho->cartucho->cantidad >=1)
+                      badge-warning
                     @else
-                      badge-danger
-                  @endif">
+                        badge-danger
+                    @endif
+                  @else
+                    badge-danger
+                  @endisset
+                    ">
                     {{$cartucho->cartucho->modelo}}
                   </span>
                 @empty

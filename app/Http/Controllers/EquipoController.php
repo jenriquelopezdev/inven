@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Equipo;
+use App\EquipoPersona;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
@@ -14,7 +15,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-      return view('admin.equipos.lista');
+      $equipo=Equipo::with('equipoPersona')->get();
+      return view('admin.equipos.lista',compact('equipo'));
     }
 
     /**
