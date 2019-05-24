@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EquipoPersona;
 use Illuminate\Http\Request;
-
+use DB;
 class EquipoPersonaController extends Controller
 {
     /**
@@ -34,7 +34,17 @@ class EquipoPersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+          DB::transaction(function() use($request){
+            $relacion=new EquipoPersona();
+            $relacion->id_equipo=$request->input('id_equipo');
+            $relacion->id_persona=$request->input('id_persona');
+            $relacion->save();
+          });
+          return response()->json(["ok"=>1]);
+        }catch(\Exception $e){
+          return response()->json(["error"=>$e]);
+        }
     }
 
     /**
@@ -77,8 +87,21 @@ class EquipoPersonaController extends Controller
      * @param  \App\EquipoPersona  $equipoPersona
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EquipoPersona $equipoPersona)
+    public function destroy(Request $request)
     {
-        //
+      $relacion=EquipoPersona::find($request->input('id'));
+      try{
+        DB::transaction(function() use($relacion){
+          $relacion->delete();
+        });
+        return response()->json([
+          "ok"=>1
+        ]);
+      }catch(\Exception $e){
+        return response()->json([
+          "error"=>$e->getMessage()
+        ]);
+      }
+
     }
 }

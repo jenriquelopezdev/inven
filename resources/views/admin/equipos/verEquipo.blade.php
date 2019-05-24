@@ -5,7 +5,7 @@
 @section('contenedor')
   @include('admin.navegacion')
   <div class="container mb-5">
-    <h1 class="display-5 mt-3">Equipo {{$equipo[0]->id_equipo}}</h1>
+    <h1 class="display-5 mt-3">Equipo {{$equipo[0]->id_equipo}} <button data-toggle="modal" data-target="#modalEditarEquipo" class="btn btn-warning"><i class="fa fa-edit"></i></button></h1>
     @isset($equipo[0]->equipoPersona->persona)
       <p class="lead">Asignado a</p>
       <table class="table table-hover table-striped">
@@ -24,12 +24,12 @@
             <td>{{$equipo[0]->equipoPersona->persona->ubicacion->planta}} {{$equipo[0]->equipoPersona->persona->ubicacion->departamento}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->jefe}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->correo}}</td>
-            <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+            <td><button onclick="eliminarRelacionEquipoPersona({{$equipo[0]->equipoPersona->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
           </tr>
         </tbody>
       </table>
       @else
-        <button class="btn btn-success">Asignar este equipo</button>
+        <button class="btn btn-success" data-toggle="modal" data-target="#modalAsignarEquipo">Asignar este equipo <i class="fa fa-plus-circle"></i></button>
     @endisset
     <hr>
     <div class="row">
@@ -83,4 +83,53 @@
     <hr>
 
   </div>
+  @include('admin.equipos.asignarEquipo')
+  <script>
+  //Eliminar la relación (por id)
+    function eliminarRelacionEquipoPersona(id){
+      swal({
+            title: "Se eliminará a la persona de este equipo",
+            buttons:["Cancelar","OK"],
+            icon:'warning'
+        })
+        .then((value) => {
+          if(value){
+            $.ajax({
+              url:"/equiposPersonas/"+id,
+              type:"DELETE",
+              dataType:"JSON",
+              data:{"id":id},
+              success:function(resp){
+                $.each(resp, function(llave,valor){
+                  if(valor==1){
+                    swal({
+                          title: "Correcto",
+                          text: "Se eliminó a la persona de este equipo",
+                          icon: "success",
+                          button: "OK",
+                        });
+                    setTimeout(function(){
+                      location.reload()
+                    },2000)
+                  }else{
+                    swal({
+                      title: "Error",
+                      text: "Ocurrió un error:, "+valor,
+                      icon: "error",
+                      button: "OK",
+                    });
+                  console.warn(valor)
+                  }
+                })
+              },
+              error:function(err){
+                console.warn(err)
+              }
+            })
+          }else{
+            console.log("No se eliminó")
+          }
+        });
+    }
+  </script>
 @endsection
