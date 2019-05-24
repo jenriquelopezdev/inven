@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Equipo;
-use App\EquipoPersona;
+use App\Persona;
+use App\Ubicacion;
+use DB;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
@@ -15,8 +17,13 @@ class EquipoController extends Controller
      */
     public function index()
     {
-      $equipo=Equipo::with('equipoPersona')->get();
-      return view('admin.equipos.lista',compact('equipo'));
+      $equipos=Equipo::with('equipoPersona')
+                      ->with('equipoPersona.persona')
+                      ->with('equipoPersona.persona.ubicacion')
+                      ->get();
+      $personas=Persona::with('ubicacion')->get();
+      $ubicaciones=Ubicacion::all();
+      return view('admin.equipos.lista',compact('equipos','personas','ubicaciones'));
     }
 
     /**
@@ -37,7 +44,14 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+          DB::transaction(function() use($request){
+            Equipo::create($request->all());
+          });
+          return response()->json(["ok"=>1]);
+        }catch(\Exception $e){
+          return response()->json(["error"=>$e->getMessage()]);
+        }
     }
 
     /**
@@ -46,9 +60,15 @@ class EquipoController extends Controller
      * @param  \App\equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function show(equipo $equipo)
+    public function show($id)
     {
-        //
+      $equipo=Equipo::with('equipoPersona')
+                      ->with('equipoPersona.persona')
+                      ->with('equipoPersona.persona.ubicacion')
+                      ->where('id_equipo',$id)
+                      ->get();
+      $personas=Persona::with('ubicacion')->get();
+      return view('admin.equipos.verEquipo',compact('equipo','personas'));
     }
 
     /**

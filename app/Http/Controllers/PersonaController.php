@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Persona;
 use Illuminate\Http\Request;
-
+use DB;
 class PersonaController extends Controller
 {
     /**
@@ -14,7 +14,6 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -35,7 +34,14 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+          DB::transaction(function() use($request){
+            Persona::create($request->all());
+          });
+          return response()->json(["ok"=>1]);
+        }catch(\Exception $e){
+          return response()->json(["error"=>$e->getMessage()]);
+        }
     }
 
     /**

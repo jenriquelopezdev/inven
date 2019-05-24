@@ -8,7 +8,8 @@ class Equipo extends Model
 {
     protected $primaryKey = 'id_equipo';
 
+    protected $guarded=['token'];
     public function equipoPersona(){
-      return $this->hasMany('App\EquipoPersona','id_equipo','id_equipo');
+      return $this->hasOne('App\EquipoPersona','id_equipo','id_equipo');
     }
 }

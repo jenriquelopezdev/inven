@@ -24,6 +24,7 @@ Route::get('/inicio', function () {
 });
 
 Route::resource('equipos','EquipoController');
+Route::resource('persona','PersonaController');
 
 Route::resource('impresoras','ImpresoraUbicacionController');
 Route::resource('ubicaciones','UbicacionController');
