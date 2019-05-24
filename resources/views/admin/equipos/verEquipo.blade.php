@@ -84,6 +84,7 @@
 
   </div>
   @include('admin.equipos.asignarEquipo')
+  @include('admin.equipos.editarEquipo')
   <script>
   //Eliminar la relación (por id)
     function eliminarRelacionEquipoPersona(id){

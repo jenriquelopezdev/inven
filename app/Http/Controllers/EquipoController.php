@@ -91,7 +91,14 @@ class EquipoController extends Controller
      */
     public function update(Request $request, equipo $equipo)
     {
-        //
+        try{
+          DB::transaction(function() use($request,$equipo){
+            $equipo->update($request->all());
+          });
+          return response()->json(["ok"=>1]);
+        }catch(\Exception $e){
+          return response()->json(["error"=>$e->getMessage()]);
+        }
     }
 
     /**

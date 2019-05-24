@@ -55,7 +55,7 @@
               <th>Ubicación</th>
               <th>Jefe</th>
               <th>Correo</th>
-              <th></th>
+              {{-- <th></th> --}}
             </thead>
             <tbody>
               @forelse ($personas as $persona)
@@ -65,7 +65,7 @@
                   <td>{{$persona->ubicacion->planta}} {{$persona->ubicacion->departamento}}</td>
                   <td>{{$persona->jefe}}</td>
                   <td>{{$persona->correo}}</td>
-                  <td><button class="btn btn-warning"><i class="fa fa-edit"></i></button></td>
+                  {{-- <td><button class="btn btn-warning"><i class="fa fa-edit"></i></button></td> --}}
                 </tr>
               @empty
 
