@@ -56,6 +56,13 @@
 
             <div class="row">
               <div class="form-group col">
+                <label for="">MAC Address</label>
+                <input type="text" class="form-control" value="{{$equipo[0]->mac}}" name="mac">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col">
                 <label for="">Descripción</label>
                 <textarea type="text" class="form-control" name="descripcion">{{$equipo[0]->descripcion}}</textarea>
               </div>
