@@ -36,6 +36,11 @@
               </div>
 
               <div class="form-group">
+                <label for="">Puesto</label>
+                <input type="text" name="puesto" class="form-control">
+              </div>
+
+              <div class="form-group">
                 <label for="">Jefe</label>
                 <input type="text" name="jefe" class="form-control">
               </div>
@@ -45,7 +50,7 @@
                 <input type="text" name="correo" class="form-control">
               </div>
 
-              <button class="btn btn-success btn-block">Guardar <i class="fa fa-save"></i></button>
+              <button class="btn btn-success btn-block mb-3">Guardar <i class="fa fa-save"></i></button>
             </form>
           </div>
 
@@ -54,6 +59,7 @@
               <th>Código de empleado</th>
               <th>Nombre</th>
               <th>Ubicación</th>
+              <th>Puesto</th>
               <th>Jefe</th>
               <th>Correo</th>
               {{-- <th></th> --}}
@@ -64,6 +70,7 @@
                   <td>{{$persona->codigo_empleado}}</td>
                   <td>{{$persona->nombre}}</td>
                   <td>{{$persona->ubicacion->planta}} {{$persona->ubicacion->departamento}}</td>
+                  <td>{{$persona->puesto}}</td>
                   <td>{{$persona->jefe}}</td>
                   <td>{{$persona->correo}}</td>
                   {{-- <td><button class="btn btn-warning"><i class="fa fa-edit"></i></button></td> --}}
