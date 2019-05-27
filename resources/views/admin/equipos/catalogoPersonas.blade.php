@@ -27,6 +27,7 @@
               <div class="form-group">
                 <label for="">Ubicación*</label>
                 <input type="text" class="form-control" required list="listaUbicaciones" id="id_ubicacion">
+                <a href="#!" data-dismiss="modal" data-toggle="modal" data-target="#modalAgregarUbicacion">Agregar ubicación</a>
                 <datalist id="listaUbicaciones">
                   @foreach ($ubicaciones as $ubicacion)
                     <option data-value="{{$ubicacion->id_ubicacion}}" value="{{$ubicacion->planta}} {{$ubicacion->departamento}}"></option>
@@ -76,7 +77,6 @@
     </div>
   </div>
 </div>
-
 
 <script>
   $("#agregarPersona").submit(function(){
