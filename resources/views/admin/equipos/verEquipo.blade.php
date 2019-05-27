@@ -13,6 +13,7 @@
           <th>Código de empleado</th>
           <th>Nombre</th>
           <th>Ubicación</th>
+          <th>Puesto</th>
           <th>Jefe</th>
           <th>Correo</th>
           <th></th>
@@ -22,6 +23,7 @@
             <td>{{$equipo[0]->equipoPersona->persona->codigo_empleado}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->nombre}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->ubicacion->planta}} {{$equipo[0]->equipoPersona->persona->ubicacion->departamento}}</td>
+            <td>{{$equipo[0]->equipoPersona->persona->puesto}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->jefe}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->correo}}</td>
             <td><button onclick="eliminarRelacionEquipoPersona({{$equipo[0]->equipoPersona->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
