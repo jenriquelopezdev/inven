@@ -15,15 +15,20 @@
         <a class="nav-link" href="{{url('impresoras')}}">Impresoras <i class="fa fa-print"></i></a>
       </li>
       {{--  --}}
-      {{-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Catálogos <i class="fa fa-list"></i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" data-toggle="modal" data-target="#modalUbicacion" href="#!">Ubicaciones</a>
-        </div>
-      </li> --}}
 
+
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-user-circle"></i> {{Auth::user()->name}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <form method="post">
+            <a class="dropdown-item" href="{{Auth::logout()}}">Cerrar sesión</a>
+          </form>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>

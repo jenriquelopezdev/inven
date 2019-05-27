@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 class CartuchoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
