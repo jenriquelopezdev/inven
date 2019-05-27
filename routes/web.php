@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('admin.inicio');
-});
+})->middleware('auth');
 
 Auth::routes();
 
@@ -21,7 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/inicio', function () {
     return view('admin.inicio');
-});
+})->middleware('auth');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::resource('equipos','EquipoController');
 Route::resource('equiposPersonas','EquipoPersonaController');

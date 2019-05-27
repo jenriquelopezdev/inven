@@ -25,7 +25,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <form method="post">
-            <a class="dropdown-item" href="{{Auth::logout()}}">Cerrar sesión</a>
+            <a class="dropdown-item" href="{{url('logout')}}">Cerrar sesión</a>
           </form>
         </div>
       </li>
