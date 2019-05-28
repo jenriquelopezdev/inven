@@ -11,13 +11,14 @@
           <form method="post" id="editarEquipo">
             @csrf
             <div class="row">
-              <div class="form-group col-4">
+              {{-- <div class="form-group col-4">
                 <label for="">Tipo</label>
+
                 <select name="tipo" id="" class="form-control" required>
                   <option {{$equipo[0]->tipo=='Laptop' ? 'selected' : ''}} value="Laptop">Laptop</option>
                   <option {{$equipo[0]->tipo=='Escritorio' ? 'selected' : ''}} value="Escritorio">Escritorio</option>
                 </select>
-              </div>
+              </div> --}}
               <div class="form-group col-4">
                 <label for="">Marca</label>
                 <input type="text" class="form-control" value="{{$equipo[0]->marca}}" name="marca">
