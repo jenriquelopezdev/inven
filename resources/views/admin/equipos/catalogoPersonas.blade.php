@@ -62,6 +62,7 @@
               <th>Puesto</th>
               <th>Jefe</th>
               <th>Correo</th>
+              <th></th>
               {{-- <th></th> --}}
             </thead>
             <tbody>
@@ -73,6 +74,7 @@
                   <td>{{$persona->puesto}}</td>
                   <td>{{$persona->jefe}}</td>
                   <td>{{$persona->correo}}</td>
+                  <td><a class="btn btn-warning" href="{{route('persona.edit',$persona->id_persona)}}"><i class="fa fa-edit"></i></a></td>
                   {{-- <td><button class="btn btn-warning"><i class="fa fa-edit"></i></button></td> --}}
                 </tr>
               @empty

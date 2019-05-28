@@ -17,6 +17,7 @@
           <th>Jefe</th>
           <th>Correo</th>
           <th></th>
+          <th></th>
         </thead>
         <tbody>
           <tr>
@@ -26,6 +27,7 @@
             <td>{{$equipo[0]->equipoPersona->persona->puesto}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->jefe}}</td>
             <td>{{$equipo[0]->equipoPersona->persona->correo}}</td>
+            <td><a class="btn btn-warning" href="{{route('persona.edit',$equipo[0]->equipoPersona->persona->id_persona)}}"><i class="fa fa-edit"></i></a></td>
             <td><button onclick="eliminarRelacionEquipoPersona({{$equipo[0]->equipoPersona->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
           </tr>
         </tbody>
