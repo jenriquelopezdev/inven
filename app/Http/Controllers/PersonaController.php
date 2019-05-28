@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Persona;
 use Illuminate\Http\Request;
 use DB;
+use App\Ubicacion;
 class PersonaController extends Controller
 {
 
@@ -65,9 +66,12 @@ class PersonaController extends Controller
      * @param  \App\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function edit(persona $persona)
+    public function edit($id)
     {
-        //
+        $persona=Persona::find($id);
+        $ubicaciones=Ubicacion::all();
+        // return response()->json(["persona"=>$persona]);
+        return view('admin.equipos.editarPersona',compact('persona','ubicaciones'));
     }
 
     /**
@@ -77,9 +81,17 @@ class PersonaController extends Controller
      * @param  \App\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, persona $persona)
+    public function update(Request $request,$id)
     {
-        //
+        $persona=Persona::find($id);
+        try{
+          DB::transaction(function() use($request,$persona){
+            $persona->update($request->all());
+          });
+          return response()->json(["ok"=>1]);
+        }catch(\Exception $e){
+          return response()->json(["error"=>$e->getMessage()]);
+        }
     }
 
     /**
