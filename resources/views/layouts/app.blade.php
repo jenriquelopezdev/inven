@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
+    <link rel="shortcut icon" href="{{asset('img/warehouse.png')}}">
     <style>
       .modal-header{cursor:move;}.close{background-color:rgb(193, 77, 78)!important;}
     </style>
