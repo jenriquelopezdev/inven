@@ -28,7 +28,7 @@
                 @forelse ($impresora->impresoraCartucho as $cartucho)
                   <span class="badge
                   @isset($cartucho->cartucho->cantidadSugerida)
-                    @if ($cartucho->cartucho->cantidad >= $cartucho->cartucho->cantidadSugerida)
+                    @if (($cartucho->cartucho->cantidad >= $cartucho->cartucho->cantidadSugerida) && ($cartucho->cartucho->cantidad>0))
                       badge-success
                     @elseif ($cartucho->cartucho->cantidad >=1)
                       badge-warning
