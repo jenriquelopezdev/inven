@@ -36,7 +36,7 @@
                         badge-danger
                     @endif
                   @else
-                    badge-danger
+                    badge-info
                   @endisset
                     ">
                     {{$cartucho->cartucho->modelo}}
