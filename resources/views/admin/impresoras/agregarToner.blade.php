@@ -59,19 +59,20 @@
 
 @include('admin.impresoras.adminToner')
 <script>
-  $('.activarModalToner').on('click',function(){
-
-    $('#tituloToner').empty();
-    $('#modalAdministrarToner').modal({backdrop: 'static'})
-    var id = $(this).data('id');
-    var modelo = $(this).data('modelo');
-    var cantidad = $(this).data('cantidad');
-    var sugerido = $(this).data('sugerido');
-    $('#tituloToner').html('Administrar toner '+modelo);
-    $('#adminIdCartucho').val(id);
-    $('#adminCantidadToner').val(cantidad)
-    $('#adminCantidadSugeridaToner').val(sugerido)
-  });
+  $(document).ready(function(){
+    $('.activarModalToner').on('click',function(){
+      $('#tituloToner').empty();
+      $('#modalAdministrarToner').modal({backdrop: 'static'})
+      var id = $(this).data('id');
+      var modelo = $(this).data('modelo');
+      var cantidad = $(this).data('cantidad');
+      var sugerido = $(this).data('sugerido');
+      $('#tituloToner').html('Administrar toner '+modelo);
+      $('#adminIdCartucho').val(id);
+      $('#adminCantidadToner').val(cantidad)
+      $('#adminCantidadSugeridaToner').val(sugerido)
+    });
+  })
 </script>
 <script>
   $("#agregarToner").submit(function(){

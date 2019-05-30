@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="shortcut icon" href="{{asset('img/warehouse.png')}}">
     <style>
-      .modal-header{cursor:move;}.close{background-color:rgb(193, 77, 78)!important;}
+      .modal-header{cursor:move;}.close{background-color:rgb(193, 77, 78)!important;}.badge-pointer{cursor:pointer;}
     </style>
   </head>
   <body>

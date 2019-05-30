@@ -26,7 +26,7 @@
             <td>
               @isset($impresora->impresoraCartucho)
                 @forelse ($impresora->impresoraCartucho as $cartucho)
-                  <span class="badge
+                  <span data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}" data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}" data-sugerido="{{$cartucho->cartucho->cantidadSugerida}}" class="badge-pointer activarModalToner badge
                   @isset($cartucho->cartucho->cantidadSugerida)
                     @if (($cartucho->cartucho->cantidad >= $cartucho->cartucho->cantidadSugerida) && ($cartucho->cartucho->cantidad>0))
                       badge-success

@@ -30,7 +30,6 @@
   </div>
 </div>
 
-
 <script>
   $("#adminToner").submit(function(){
     event.preventDefault();
