@@ -12,9 +12,9 @@
             <form method="post" id="agregarImpresora">
               @csrf
               <div class="form-inline">
-                <label for="">Modelo</label>
-                <input type="text" class="ml-3 form-control" name="modelo">
-                <button class="btn btn-success"><i class="fa fa-plus-circle"></i></button>
+                <label for="">Modelo *</label>
+                <input type="text" class="ml-3 form-control" name="modelo" required>
+                <button class="btn btn-success ml-2">Agregar <i class="fa fa-plus-circle"></i></button>
               </div>
             </form>
           </div>

@@ -16,12 +16,13 @@
                 <input type="text" class="ml-3 form-control mr-3" name="modelo" placeholder="Nombre del cartucho" required>
                 <label for="">Cantidad*</label>
                 <input type="number" min="0" class="ml-3 form-control" name="cantidad" value="1" required>
-                <button class="btn btn-success"><i class="fa fa-plus-circle"></i></button>
               </div>
               <div class="form-inline mt-1">
                 <label for="">Sugeridos</label>
-                <input type="number" name="cantidadSugerida" min="0" class="form-control ml-1" value="" placeholder="Cantidad sugerida">
+                <input type="number" name="cantidadSugerida" min="0" class="form-control ml-1" value="0" placeholder="Cantidad sugerida">
               </div>
+              <button class="btn btn-success m-2 btn-block">Agregar <i class="fa fa-plus-circle"></i></button>
+
             </form>
           </div>
 
