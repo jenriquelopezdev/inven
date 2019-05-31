@@ -8,30 +8,33 @@
     <h1 class="display-5 mt-3">Equipo {{$equipo[0]->id_equipo}} <button data-toggle="modal" data-target="#modalEditarEquipo" class="btn btn-warning"><i class="fa fa-edit"></i></button></h1>
     @isset($equipo[0]->equipoPersona->persona)
       <p class="lead">Asignado a</p>
-      <table class="table table-hover table-striped">
-        <thead>
-          <th>Código de empleado</th>
-          <th>Nombre</th>
-          <th>Ubicación</th>
-          <th>Puesto</th>
-          <th>Jefe</th>
-          <th>Correo</th>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{$equipo[0]->equipoPersona->persona->codigo_empleado}}</td>
-            <td>{{$equipo[0]->equipoPersona->persona->nombre}}</td>
-            <td>{{$equipo[0]->equipoPersona->persona->ubicacion->planta}} {{$equipo[0]->equipoPersona->persona->ubicacion->departamento}}</td>
-            <td>{{$equipo[0]->equipoPersona->persona->puesto}}</td>
-            <td>{{$equipo[0]->equipoPersona->persona->jefe}}</td>
-            <td>{{$equipo[0]->equipoPersona->persona->correo}}</td>
-            <td><a class="btn btn-warning" href="{{route('persona.edit',$equipo[0]->equipoPersona->persona->id_persona)}}"><i class="fa fa-edit"></i></a></td>
-            <td><button onclick="eliminarRelacionEquipoPersona({{$equipo[0]->equipoPersona->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover table-striped">
+          <thead>
+            <th>Código de empleado</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Puesto</th>
+            <th>Jefe</th>
+            <th>Correo</th>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{$equipo[0]->equipoPersona->persona->codigo_empleado}}</td>
+              <td>{{$equipo[0]->equipoPersona->persona->nombre}}</td>
+              <td>{{$equipo[0]->equipoPersona->persona->ubicacion->planta}} {{$equipo[0]->equipoPersona->persona->ubicacion->departamento}}</td>
+              <td>{{$equipo[0]->equipoPersona->persona->puesto}}</td>
+              <td>{{$equipo[0]->equipoPersona->persona->jefe}}</td>
+              <td>{{$equipo[0]->equipoPersona->persona->correo}}</td>
+              <td><a class="btn btn-warning" href="{{route('persona.edit',$equipo[0]->equipoPersona->persona->id_persona)}}"><i class="fa fa-edit"></i></a></td>
+              <td><button onclick="eliminarRelacionEquipoPersona({{$equipo[0]->equipoPersona->id}})" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       @else
         <button class="btn btn-success" data-toggle="modal" data-target="#modalAsignarEquipo">Asignar este equipo <i class="fa fa-plus-circle"></i></button>
     @endisset

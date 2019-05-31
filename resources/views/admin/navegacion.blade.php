@@ -14,7 +14,6 @@
       <li class="nav-item">
         <a class="nav-link" href="{{url('impresoras')}}">Impresoras <i class="fa fa-print"></i></a>
       </li>
-      {{--  --}}
 
 
     </ul>
@@ -33,4 +32,4 @@
   </div>
 </nav>
 
-@include('admin.catalogosAjax.ubicaciones')
+{{-- @include('admin.catalogosAjax.ubicaciones') --}}

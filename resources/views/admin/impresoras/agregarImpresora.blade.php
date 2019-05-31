@@ -20,29 +20,29 @@
           </div>
 
           <hr>
-        <table class="table table-striped" id="catalogoImpresoras">
-          <thead>
-            <th>ID</th>
-            <th>Modelo</th>
-            <th></th>
-          </thead>
-          <tbody>
-            @isset($listadoImpresoras)
-              @forelse ($listadoImpresoras as $impresora)
-                <tr>
-                  <td>{{$impresora->id_impresora}}</td>
-                  <td>{{$impresora->modelo}}</td>
-                  <td><a href="{{route('impresora.show',$impresora->id_impresora)}}" class="btn btn-info btn-md">Administrar</a></td>
-                </tr>
-              @empty
-                <tr><td colspan="3"><div class="alert alert info">No hay impresoras</div></td></tr>
-              @endforelse
-            @endisset
-          </tbody>
-        </table>
-
+          <div class="table-responsive">
+            <table class="table table-striped" id="catalogoImpresoras">
+              <thead>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th></th>
+              </thead>
+              <tbody>
+                @isset($listadoImpresoras)
+                  @forelse ($listadoImpresoras as $impresora)
+                    <tr>
+                      <td>{{$impresora->id_impresora}}</td>
+                      <td>{{$impresora->modelo}}</td>
+                      <td><a href="{{route('impresora.show',$impresora->id_impresora)}}" class="btn btn-info btn-md">Administrar</a></td>
+                    </tr>
+                  @empty
+                    <tr><td colspan="3"><div class="alert alert info">No hay impresoras</div></td></tr>
+                  @endforelse
+                @endisset
+              </tbody>
+            </table>
+          </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -9,51 +9,54 @@
   <div class="container mb-3">
     <h1 class="display-5 mt-3">Listado de impresoras asignadas</h1>
     @include('admin.impresoras.acciones')
-    <table class="table" id="impresoras">
-      <thead>
-        <th>ID</th>
-        <th>Modelo</th>
-        <th>Ubicación</th>
-        <th>Cartuchos</th>
-        <th></th>
-      </thead>
-      <tbody>
-        @forelse ($impresoras as $impresora)
-          <tr>
-            <td>{{$impresora->impresora->id_impresora}}</td>
-            <td>{{$impresora->impresora->modelo}}</td>
-            <td>{{$impresora->ubicacion->planta}} - {{$impresora->ubicacion->departamento}}</td>
-            <td>
-              @isset($impresora->impresoraCartucho)
-                @forelse ($impresora->impresoraCartucho as $cartucho)
-                  <span data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}" data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}" data-sugerido="{{$cartucho->cartucho->cantidadSugerida}}" class="badge-pointer activarModalToner badge
-                  @isset($cartucho->cartucho->cantidadSugerida)
-                    @if (($cartucho->cartucho->cantidad >= $cartucho->cartucho->cantidadSugerida) && ($cartucho->cartucho->cantidad>0))
-                      badge-success
-                    @elseif ($cartucho->cartucho->cantidad >=1)
-                      badge-warning
+    <div class="table-responsive">
+      <table class="table" id="impresoras">
+        <thead>
+          <th>ID</th>
+          <th>Modelo</th>
+          <th>Ubicación</th>
+          <th>Cartuchos</th>
+          <th></th>
+        </thead>
+        <tbody>
+          @forelse ($impresoras as $impresora)
+            <tr>
+              <td>{{$impresora->impresora->id_impresora}}</td>
+              <td>{{$impresora->impresora->modelo}}</td>
+              <td>{{$impresora->ubicacion->planta}} - {{$impresora->ubicacion->departamento}}</td>
+              <td>
+                @isset($impresora->impresoraCartucho)
+                  @forelse ($impresora->impresoraCartucho as $cartucho)
+                    <span data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}" data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}" data-sugerido="{{$cartucho->cartucho->cantidadSugerida}}" class="badge-pointer activarModalToner badge
+                    @isset($cartucho->cartucho->cantidadSugerida)
+                      @if (($cartucho->cartucho->cantidad >= $cartucho->cartucho->cantidadSugerida) && ($cartucho->cartucho->cantidad>0))
+                        badge-success
+                      @elseif ($cartucho->cartucho->cantidad >=1)
+                        badge-warning
+                      @else
+                          badge-danger
+                      @endif
                     @else
-                        badge-danger
-                    @endif
-                  @else
-                    badge-info
-                  @endisset
-                    ">
-                    {{$cartucho->cartucho->modelo}}
-                  </span>
-                @empty
-                  <span class="badge badge-secondary">Sin asignar</span>
-                @endforelse
-              @endisset
+                      badge-info
+                    @endisset
+                      ">
+                      {{$cartucho->cartucho->modelo}}
+                    </span>
+                  @empty
+                    <span class="badge badge-secondary">Sin asignar</span>
+                  @endforelse
+                @endisset
 
-            </td>
-            <td><a href="{{route('impresora.show',$impresora->id_impresora)}}" class="btn btn-info btn-md">Administrar</a></td>
-          </tr>
-        @empty
-          <tr><td><div class="alert alert-info">No hay relaciones de impresoras - ubicaciones</div></td></tr>
-        @endforelse
-      </tbody>
-    </table>
+              </td>
+              <td><a href="{{route('impresora.show',$impresora->id_impresora)}}" class="btn btn-info btn-md">Administrar</a></td>
+            </tr>
+          @empty
+            <tr><td><div class="alert alert-info">No hay relaciones de impresoras - ubicaciones</div></td></tr>
+          @endforelse
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
 

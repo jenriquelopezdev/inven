@@ -27,30 +27,33 @@
           </div>
 
           <hr>
-        <table class="table table-striped" id="catalogoToner">
-          <thead>
-            <th>ID</th>
-            <th>Modelo</th>
-            <th>Cantidad</th>
-            <th>Sugeridos</th>
-            <th></th>
-          </thead>
-          <tbody>
-            @isset($listadoToner)
-              @forelse ($listadoToner as $toner)
-                <tr>
-                  <td>{{$toner->id_cartucho}}</td>
-                  <td>{{$toner->modelo}}</td>
-                  <td>{{$toner->cantidad}}</td>
-                  <td>{{$toner->cantidadSugerida}}</td>
-                  <td><button data-toggle="modal" data-id="{{$toner->id_cartucho}}" data-modelo="{{$toner->modelo}}" data-cantidad="{{$toner->cantidad}}" data-sugerido="{{$toner->cantidadSugerida}}" class="btn btn-warning activarModalToner"><i class="fa fa-plus-circle"></i>/<i class="fa fa-minus-circle"></i></button></td>
-                </tr>
-              @empty
-                <tr><td colspan="3"><div class="alert alert-info">No hay cartuchos registrados</div></td></tr>
-              @endforelse
-            @endisset
-          </tbody>
-        </table>
+          <div class="table-responsive">
+            <table class="table table-striped" id="catalogoToner">
+              <thead>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th>Cantidad</th>
+                <th>Sugeridos</th>
+                <th></th>
+              </thead>
+              <tbody>
+                @isset($listadoToner)
+                  @forelse ($listadoToner as $toner)
+                    <tr>
+                      <td>{{$toner->id_cartucho}}</td>
+                      <td>{{$toner->modelo}}</td>
+                      <td>{{$toner->cantidad}}</td>
+                      <td>{{$toner->cantidadSugerida}}</td>
+                      <td><button data-toggle="modal" data-id="{{$toner->id_cartucho}}" data-modelo="{{$toner->modelo}}" data-cantidad="{{$toner->cantidad}}" data-sugerido="{{$toner->cantidadSugerida}}" class="btn btn-warning activarModalToner"><i class="fa fa-plus-circle"></i>/<i class="fa fa-minus-circle"></i></button></td>
+                    </tr>
+                  @empty
+                    <tr><td colspan="3"><div class="alert alert-info">No hay cartuchos registrados</div></td></tr>
+                  @endforelse
+                @endisset
+              </tbody>
+            </table>
+          </div>
+
 
       </div>
 

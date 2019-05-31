@@ -53,35 +53,37 @@
               <button class="btn btn-success btn-block mb-3">Guardar <i class="fa fa-save"></i></button>
             </form>
           </div>
+          <div class="table-responsive">
+            <table id="catalogoPersonas" class="table table-hover table-striped mt-2">
+              <thead>
+                <th>Código de empleado</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th>Puesto</th>
+                <th>Jefe</th>
+                <th>Correo</th>
+                <th></th>
+                {{-- <th></th> --}}
+              </thead>
+              <tbody>
+                @forelse ($personas as $persona)
+                  <tr>
+                    <td>{{$persona->codigo_empleado}}</td>
+                    <td>{{$persona->nombre}}</td>
+                    <td>{{$persona->ubicacion->planta}} {{$persona->ubicacion->departamento}}</td>
+                    <td>{{$persona->puesto}}</td>
+                    <td>{{$persona->jefe}}</td>
+                    <td>{{$persona->correo}}</td>
+                    <td><a class="btn btn-warning" href="{{route('persona.edit',$persona->id_persona)}}"><i class="fa fa-edit"></i></a></td>
+                    {{-- <td><button class="btn btn-warning"><i class="fa fa-edit"></i></button></td> --}}
+                  </tr>
+                @empty
 
-          <table id="catalogoPersonas" class="table table-hover table-striped mt-2">
-            <thead>
-              <th>Código de empleado</th>
-              <th>Nombre</th>
-              <th>Ubicación</th>
-              <th>Puesto</th>
-              <th>Jefe</th>
-              <th>Correo</th>
-              <th></th>
-              {{-- <th></th> --}}
-            </thead>
-            <tbody>
-              @forelse ($personas as $persona)
-                <tr>
-                  <td>{{$persona->codigo_empleado}}</td>
-                  <td>{{$persona->nombre}}</td>
-                  <td>{{$persona->ubicacion->planta}} {{$persona->ubicacion->departamento}}</td>
-                  <td>{{$persona->puesto}}</td>
-                  <td>{{$persona->jefe}}</td>
-                  <td>{{$persona->correo}}</td>
-                  <td><a class="btn btn-warning" href="{{route('persona.edit',$persona->id_persona)}}"><i class="fa fa-edit"></i></a></td>
-                  {{-- <td><button class="btn btn-warning"><i class="fa fa-edit"></i></button></td> --}}
-                </tr>
-              @empty
+                @endforelse
+              </tbody>
+            </table>
+          </div>
 
-              @endforelse
-            </tbody>
-          </table>
       </div>
     </div>
   </div>
