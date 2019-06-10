@@ -111,8 +111,17 @@ class EquipoController extends Controller
      * @param  \App\equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(equipo $equipo)
+    public function destroy(Request $request)
     {
-        //
+      try{
+        DB::transaction(function() use($request){
+          $equipo=Equipo::find($request->input('id'));
+          $equipo->delete();
+        });
+        return response()->json(["ok"=>1]);
+      }catch(\Exception $e){
+        return response()->json(["error"=>$e->getMessage()]);
+      }
     }
+
 }

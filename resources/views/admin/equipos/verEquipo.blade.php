@@ -37,6 +37,7 @@
 
       @else
         <button class="btn btn-success" data-toggle="modal" data-target="#modalAsignarEquipo">Asignar este equipo <i class="fa fa-plus-circle"></i></button>
+        <button class="btn btn-danger" onclick="eliminarEquipo({{$equipo[0]->id_equipo}})">Eliminar equipo <i class="fa fa-trash"></i></button>
     @endisset
     <hr>
     <div class="row">
@@ -125,6 +126,54 @@
                         });
                     setTimeout(function(){
                       location.reload()
+                    },2000)
+                  }else{
+                    swal({
+                      title: "Error",
+                      text: "Ocurrió un error:, "+valor,
+                      icon: "error",
+                      button: "OK",
+                    });
+                  console.warn(valor)
+                  }
+                })
+              },
+              error:function(err){
+                console.warn(err)
+              }
+            })
+          }else{
+            console.log("No se eliminó")
+          }
+        });
+    }
+  </script>
+  <script>
+  //Eliminar la relación (por id)
+    function eliminarEquipo(id){
+      swal({
+            title: "Se eliminará este equipo",
+            buttons:["Cancelar","OK"],
+            icon:'warning'
+        })
+        .then((value) => {
+          if(value){
+            $.ajax({
+              url:"/equipos/"+id,
+              type:"DELETE",
+              dataType:"JSON",
+              data:{"id":id},
+              success:function(resp){
+                $.each(resp, function(llave,valor){
+                  if(valor==1){
+                    swal({
+                          title: "Correcto",
+                          text: "Se eliminó este equipo",
+                          icon: "success",
+                          button: "OK",
+                        });
+                    setTimeout(function(){
+                      location.href="{{route('equipos.index')}}"
                     },2000)
                   }else{
                     swal({
