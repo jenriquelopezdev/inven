@@ -100,8 +100,16 @@ class PersonaController extends Controller
      * @param  \App\persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function destroy(persona $persona)
+    public function destroy(Request $request)
     {
-        //
+      try{
+        DB::transaction(function() use($request){
+          $persona=Persona::find($request->input('id'));
+          $persona->delete();
+        });
+        return response()->json(["ok"=>1]);
+      }catch(\Exception $e){
+        return response()->json(["error"=>$e->getMessage()]);
+      }
     }
 }

@@ -5,6 +5,8 @@
 @section('contenedor')
   @include('admin.navegacion')
   <div class="container mt-3 mb-5">
+    <button onclick="eliminarPersona({{$persona->id_persona}})" class="btn btn-danger">Eliminar persona <i class="fa fa-trash"></i></button>
+    <p><small><em>*No puedes eliminar a la persona si tiene un equipo asignado</em></small></p>
     <form method="post" id="editarPersona">
       @csrf
       <div class="row">
@@ -87,5 +89,52 @@
       }
     })
   })
+  </script>
+  <script>
+  function eliminarPersona(id){
+    swal({
+          title: "Se eliminará a la persona",
+          buttons:["Cancelar","OK"],
+          icon:'warning'
+      })
+      .then((value) => {
+        if(value){
+          $.ajax({
+            url:"/persona/"+id,
+            type:"DELETE",
+            dataType:"JSON",
+            data:{"id":id},
+            success:function(resp){
+              $.each(resp, function(llave,valor){
+                if(valor==1){
+                  swal({
+                        title: "Correcto",
+                        text: "Se eliminó a la persona",
+                        icon: "success",
+                        button: "OK",
+                      });
+                  setTimeout(function(){
+                    location.href="{{route('equipos.index')}}"
+                  },2000)
+                }else{
+                  swal({
+                    title: "Error",
+                    text: "Ocurrió un error:, "+valor,
+                    icon: "error",
+                    button: "OK",
+                  });
+                console.warn(valor)
+                }
+              })
+            },
+            error:function(err){
+              console.warn(err)
+            }
+          })
+        }else{
+          console.log("No se eliminó")
+        }
+      });
+  }
   </script>
 @endsection
