@@ -27,6 +27,7 @@
           </div>
 
           <hr>
+          <a href="{{route('reporteToner')}}" class="btn btn-dark mb-3">Reporte de toner</a>
           <div class="table-responsive">
             <table class="table table-striped" id="catalogoToner">
               <thead>

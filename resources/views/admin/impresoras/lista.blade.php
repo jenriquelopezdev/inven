@@ -7,7 +7,7 @@
   @include('admin.navegacion')
 
   <div class="container mb-3">
-    <h1 class="display-5 mt-3">Listado de impresoras asignadas</h1>
+    <h1 class="display-5 mt-3">Listado de impresoras asignadas</h1> 
     @include('admin.impresoras.acciones')
     <div class="table-responsive">
       <table class="table" id="impresoras">
