@@ -11,6 +11,7 @@ class ReporteTonerController extends Controller
 {
   public function export()
   {
-    return Excel::download(new ReporteToner, 'Inventario de toner.xlsx');
+    $fecha=date('d-m-Y');
+    return Excel::download(new ReporteToner, 'Inventario de toner '.$fecha.'.xlsx');
   }
 }

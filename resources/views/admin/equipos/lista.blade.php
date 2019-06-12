@@ -6,6 +6,7 @@
   @include('admin.navegacion')
   <div class="container">
     <h1 class="display-5 mt-3">Listado de equipos</h1>
+    <a href="{{route('reporteEquipos')}}" class="btn btn-dark">Reporte de equipos</a>
     @include('admin.equipos.acciones')
     <div class="table-responsive">
       <table class="table table-hover table-striped" id="equipos">

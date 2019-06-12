@@ -14,7 +14,15 @@
       <li class="nav-item">
         <a class="nav-link" href="{{url('impresoras')}}">Impresoras <i class="fa fa-print"></i></a>
       </li>
-
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarReporte" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-list"></i> Reportes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarReporte">
+          <a class="dropdown-item" href="{{route('reporteToner')}}">Reporte de toner</a>
+          <a class="dropdown-item" href="{{route('reporteEquipos')}}">Reporte de equipos</a>
+        </div>
+      </li>
 
     </ul>
     <ul class="navbar-nav ml-auto">

@@ -37,3 +37,4 @@ Route::resource('impresora','ImpresoraController');
 Route::resource('cartucho','CartuchoController');
 
 Route::get('/reporteToner','ReporteTonerController@export')->name('reporteToner');
+Route::get('/reporteEquipos','ReporteEquiposController@export')->name('reporteEquipos');
