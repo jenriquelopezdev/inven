@@ -3,7 +3,9 @@
     <tr>
       <th>ID</th>
       <th>Nombre</th>
-      <th>Lugar</th>
+      <th>Planta</th>
+      <th>Departamento</th>
+      <th>Jefe directo</th>
       <th>Tipo</th>
       <th>Marca</th>
       <th>Modelo</th>
@@ -22,8 +24,12 @@
         <td>{{$equipo->id_equipo}}</td>
         @isset($equipo->equipoPersona->persona)
           <td>{{$equipo->equipoPersona->persona->nombre}}</td>
-          <td>{{$equipo->equipoPersona->persona->ubicacion->planta}} - {{$equipo->equipoPersona->persona->ubicacion->departamento}}</td>
+          <td>{{$equipo->equipoPersona->persona->ubicacion->planta}}</td>
+          <td>{{$equipo->equipoPersona->persona->ubicacion->departamento}}</td>
+          <td>{{$equipo->equipoPersona->persona->jefe}}</td>
         @else
+          <td><span>Sin asignar</span></td>
+          <td><span>Sin asignar</span></td>
           <td><span>Sin asignar</span></td>
           <td><span>Sin asignar</span></td>
         @endisset
