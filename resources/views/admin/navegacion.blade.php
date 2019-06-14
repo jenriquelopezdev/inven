@@ -21,6 +21,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarReporte">
           <a class="dropdown-item" href="{{route('reporteToner')}}">Reporte de toner</a>
           <a class="dropdown-item" href="{{route('reporteEquipos')}}">Reporte de equipos</a>
+          <a class="dropdown-item" href="#">Reporte de consumo de toner</a>
         </div>
       </li>
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\RegistroConsumoToner;
 use Illuminate\Http\Request;
-
+use DB;
 class RegistroConsumoTonerController extends Controller
 {
     /**
@@ -35,7 +35,15 @@ class RegistroConsumoTonerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+          DB::transaction(function() use($request){
+            $consumo=new RegistroConsumoToner();
+            $consumo->save($request->all());
+          });
+          return response()->json(["ok"=>1]);
+        }catch(\Exception $e){
+          return response()->json(["error"=>$e->getMessage()]);
+        }
     }
 
     /**
