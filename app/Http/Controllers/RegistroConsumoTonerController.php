@@ -12,9 +12,17 @@ class RegistroConsumoTonerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+      $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $consumo=RegistroConsumoToner::with('impresoraUbicacion')
+                                      ->with('impresoraUbicacion.impresora')
+                                      ->with('impresoraUbicacion.ubicacion')
+                                      ->with('cartucho')
+                                      ->get();
+        return response()->json($consumo);
     }
 
     /**
