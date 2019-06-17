@@ -72,7 +72,9 @@
       var modelo = $(this).data('modelo');
       var cantidad = $(this).data('cantidad');
       var sugerido = $(this).data('sugerido');
+      var relacion = $(this).data('relacion')
       $('#tituloToner').html('Administrar toner '+modelo);
+      $('#adminRelacion').val(relacion);
       $('#adminIdCartucho').val(id);
       $('#adminCantidadToner').val(cantidad)
       $('#adminCantidadSugeridaToner').val(sugerido)

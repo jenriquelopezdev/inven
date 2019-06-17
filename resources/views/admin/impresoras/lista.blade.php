@@ -7,7 +7,7 @@
   @include('admin.navegacion')
 
   <div class="container mb-3">
-    <h1 class="display-5 mt-3">Listado de impresoras asignadas</h1> 
+    <h1 class="display-5 mt-3">Listado de impresoras asignadas</h1>
     @include('admin.impresoras.acciones')
     <div class="table-responsive">
       <table class="table" id="impresoras">
@@ -27,7 +27,7 @@
               <td>
                 @isset($impresora->impresoraCartucho)
                   @forelse ($impresora->impresoraCartucho as $cartucho)
-                    <span data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}" data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}" data-sugerido="{{$cartucho->cartucho->cantidadSugerida}}" class="badge-pointer activarModalToner badge
+                    <span data-toggle="modal" data-id="{{$cartucho->cartucho->id_cartucho}}" data-relacion="{{$impresora->id}}" data-modelo="{{$cartucho->cartucho->modelo}}" data-cantidad="{{$cartucho->cartucho->cantidad}}" data-sugerido="{{$cartucho->cartucho->cantidadSugerida}}" class="badge-pointer activarModalToner badge
                     @isset($cartucho->cartucho->cantidadSugerida)
                       @if (($cartucho->cartucho->cantidad >= $cartucho->cartucho->cantidadSugerida) && ($cartucho->cartucho->cantidad>0))
                         badge-success

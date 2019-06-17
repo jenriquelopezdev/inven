@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cartucho;
 use Illuminate\Http\Request;
 use DB;
+use App\RegistroConsumoToner;
 class CartuchoController extends Controller
 {
   public function __construct(){
@@ -83,13 +84,23 @@ class CartuchoController extends Controller
      */
     public function update(Request $request)
     {
+      $cartucho=Cartucho::find($request->input('id_cartucho'));
+      $relacion=new RegistroConsumoToner();
+      $cantidadActual=$cartucho->cantidad;
       try{
-        DB::transaction(function() use($request){
-          $cartucho=Cartucho::find($request->input('id_cartucho'));
+        DB::transaction(function() use($request,$cartucho){
           $cartucho->cantidad=$request->input('cantidad');
           $cartucho->cantidadSugerida=$request->input('cantidadSugerida');
           $cartucho->save();
         });
+        if(!is_null($request->input('relacion')) && $request->input('relacion')>=1){
+          DB::transaction(function() use($request,$relacion,$cartucho,$cantidadActual){
+            $relacion->id_impresora_ubicacion=$request->input('relacion');
+            $relacion->id_toner=$request->input('id_cartucho');
+            $relacion->cantidad = $cantidadActual - $request->input('cantidad');
+            $relacion->save();
+          });
+        }
         return response()->json(["ok"=>1]);
       }catch(\Exception $e){
         return response()->json(["error"=>$e->getMessage()]);

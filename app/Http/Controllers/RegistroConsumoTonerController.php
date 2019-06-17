@@ -12,9 +12,9 @@ class RegistroConsumoTonerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-      $this->middleware('auth');
-    }
+    // public function __construct(){
+    //   $this->middleware('auth');
+    // }
     public function index()
     {
         $consumo=RegistroConsumoToner::with('impresoraUbicacion')
@@ -22,7 +22,7 @@ class RegistroConsumoTonerController extends Controller
                                       ->with('impresoraUbicacion.ubicacion')
                                       ->with('cartucho')
                                       ->get();
-        return response()->json($consumo);
+        return view('admin.excel.reporteConsumoToner',compact('consumo'));
     }
 
     /**
@@ -43,15 +43,15 @@ class RegistroConsumoTonerController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-          DB::transaction(function() use($request){
-            $consumo=new RegistroConsumoToner();
-            $consumo->save($request->all());
-          });
-          return response()->json(["ok"=>1]);
-        }catch(\Exception $e){
-          return response()->json(["error"=>$e->getMessage()]);
-        }
+        // try{
+        //   DB::transaction(function() use($request){
+        //     $consumo=new RegistroConsumoToner();
+        //     $consumo->save($request->all());
+        //   });
+        //   return response()->json(["ok"=>1]);
+        // }catch(\Exception $e){
+        //   return response()->json(["error"=>$e->getMessage()]);
+        // }
     }
 
     /**
