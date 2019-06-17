@@ -10,6 +10,9 @@ use App\Exports\ReporteToner;
 use App\Exports\ReporteConsumoToner;
 class ReporteTonerController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth');
+  }
   public function export()
   {
     $fecha=date('d-m-Y');

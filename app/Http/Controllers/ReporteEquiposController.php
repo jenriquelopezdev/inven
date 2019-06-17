@@ -9,6 +9,9 @@ use App\Exports\ReporteEquipos;
 
 class ReporteEquiposController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth');
+  }
   public function export()
   {
     $fecha=date("d-m-Y");
