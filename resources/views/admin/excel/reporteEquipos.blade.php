@@ -42,7 +42,7 @@
         <td>{{$equipo->ram}}</td>
         <td>{{$equipo->disco_duro}}</td>
         <td>{{$equipo->mac}}</td>
-        <td>{{$equipo->notas}}</td>
+        <td>{{$equipo->descripcion}}</td>
       </tr>
     @endforeach
   </tbody>
